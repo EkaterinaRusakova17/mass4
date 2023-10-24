@@ -13,34 +13,34 @@ using namespace std;
  
 int main() {
   srand(time(NULL) );
-  int n = 0;
+  int number_of_rows = 0;
   int sum = 0;
   int max = 0;
   int sum_max=0;
   cout << "Введите количество строк" << endl;
-  cin >> n;
-  int ** V = new int * [n];
-  for (int i = 0; i < n; ++i) {
-    V[i] = new int [n];
+  cin >> number_of_rows;
+  int ** V = new int * [number_of_rows];
+  for (int i = 0; i < number_of_rows; ++i) {
+    V[i] = new int [number_of_rows];
     }
     
-    for (int i = 0; i < n; ++i) {
-    for (int j = 0; j < n; ++j) {
-      V[i][j] = rand();
-      cout << V[i][j] << " ";
+    for (int i = 0; i < number_of_rows; ++i) {
+      for (int j = 0; j < number_of_rows; ++j) {
+        V[i][j] = rand();
+        cout << V[i][j] << " ";
             
-      if (V[i][j]  == 0 ) {
-        ++sum;
+        if (V[i][j]  == 0 ) {
+          ++sum;
         }
-      if (V[i][j] > max) {
-        max = V[i][j];
+        if (V[i][j] > max) {
+          max = V[i][j];
         }
-    }
+      }
     cout << endl;
     }
     
-    for (int i = 0; i < n; ++i) {
-      for (int j = 0; j < n; ++j) {
+    for (int i = 0; i < number_of_rows; ++i) {
+      for (int j = 0; j < number_of_rows; ++j) {
         if (V[i][j]  == max ) {
           ++sum_max;
           }
@@ -55,7 +55,7 @@ int main() {
     else
       cout << "Максимальный элемент 1 = " << max << endl;
     
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < number_of_rows; ++i) {
       delete[]V[i];
     }
     delete [] V;
