@@ -12,36 +12,36 @@
 using namespace std;
  
 int main() {
-  srand(time(NULL) );
-  int number_of_rows = 0;
+  srand(time(NULL) ); //база, генерирующая слцчайное число, используя текущею дату, как параметр, для непредсказуемости результата 
+  int numberOfRows = 0;
   int sum = 0;
   int max = 0;
   int sum_max=0;
   cout << "Введите количество строк" << endl;
-  cin >> number_of_rows;
-  int ** V = new int * [number_of_rows];
-  for (int i = 0; i < number_of_rows; ++i) {
-    V[i] = new int [number_of_rows];
+  cin >> numberOfRows;
+  int ** V = new int * [numberOfRows]; //'**' - многочисленное перенаправление(указатель на указателе) 
+  for (int numberRowIndex = 0; numberRowIndex < numberOfRows; ++numberRowIndex) {
+    V[numberRowIndex] = new int [numberOfRows]; // 'new'- создать в numberRowIndex кол-во numberOfRows чисел
     }
     
-    for (int i = 0; i < number_of_rows; ++i) {
-      for (int j = 0; j < number_of_rows; ++j) {
-        V[i][j] = rand();
-        cout << V[i][j] << " ";
+    for (int numberRowIndex = 0; numberRowIndex < numberOfRows; ++numberRowIndex) {
+      for (int numberColumnIndex = 0; numberColumnIndex < numberOfRows; ++numberColumnIndex) {
+        V[numberRowIndex][numberColumnIndex] = rand();
+        cout << V[numberRowIndex][numberColumnIndex] << " ";
             
-        if (V[i][j]  == 0 ) {
+        if (V[numberRowIndex][numberColumnIndex]  == 0 ) {
           ++sum;
         }
-        if (V[i][j] > max) {
-          max = V[i][j];
+        if (V[numberRowIndex][numberColumnIndex] > max) {
+          max = V[numberRowIndex][numberColumnIndex];
         }
       }
     cout << endl;
     }
     
-    for (int i = 0; i < number_of_rows; ++i) {
-      for (int j = 0; j < number_of_rows; ++j) {
-        if (V[i][j]  == max ) {
+    for (int numberRowIndex = 0; numberRowIndex < numberOfRows; ++numberRowIndex) {
+      for (int numberColumnIndex = 0; numberColumnIndex < numberOfRows; ++numberColumnIndex) {
+        if (V[numberRowIndex][numberColumnIndex]  == max ) {
           ++sum_max;
           }
       }
@@ -51,13 +51,12 @@ int main() {
     if (sum_max > 1) {
       cout << "Количество максимальных элементов =" << sum_max << endl;
       cout << "Максимальный элемент  = " << max << endl;
-    }
-    else
+    } else {
       cout << "Максимальный элемент 1 = " << max << endl;
-    
-    for (int i = 0; i < number_of_rows; ++i) {
-      delete[]V[i];
     }
-    delete [] V;
+    for (int numberRowIndex = 0; numberRowIndex < numberOfRows; ++numberRowIndex) {
+      delete[]V[numberRowIndex]; // освобождение памяти от новых чисел (24 строка)
+    }
+    delete [] V; // освобождение памяти
     return 0;
 }
